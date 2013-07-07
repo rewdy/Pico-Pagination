@@ -1,6 +1,6 @@
 <?php
 /**
- * Tags for Pico plugin
+ * Pico Pagination Plugin
  *
  * @author Andrew Meyer
  * @link http://rewdy.com
@@ -14,7 +14,8 @@ class Pagination {
 	public $total_pages = 1;
 	public $paged_pages = array();
 
-	public function __construct() {
+	public function __construct()
+	{
 		$this->config = array(
 			'limit' => 5,
 			'next_text' => 'Next >',
@@ -25,7 +26,8 @@ class Pagination {
 		);
 	}
 
-	public function config_loaded(&$settings) {
+	public function config_loaded(&$settings)
+	{
 		// Pull config options for site config
 		if (isset($settings['pagination_limit']))
 			$this->config['limit'] = $settings['pagination_limit'];
@@ -33,12 +35,12 @@ class Pagination {
 			$this->config['next_text'] = $settings['pagination_next_text'];
 		if (isset($settings['pagination_prev_text']))
 			$this->config['prev_text'] = $settings['pagination_prev_text'];
+		if (isset($settings['pagination_filter_date']))
+			$this->config['filter_date'] = $settings['pagination_filter_date'];
 		if (isset($settings['pagination_page_indicator']))
 			$this->config['page_indicator'] = $settings['pagination_page_indicator'];
 		if (isset($settings['pagination_output_format']))
 			$this->config['output_format'] = $settings['pagination_output_format'];
-		if (isset($settings['pagination_filter_date']))
-			$this->config['filter_date'] = $settings['pagination_filter_date'];
 	}
 
 	public function get_pages(&$pages, &$current_page, &$prev_page, &$next_page)
@@ -64,7 +66,8 @@ class Pagination {
 		$this->paged_pages = $show_pages;
 	}
 
-	public function before_render(&$twig_vars, &$twig) {
+	public function before_render(&$twig_vars, &$twig)
+	{
 		// Set a bunch of view vars
 
 		global $config;
@@ -105,7 +108,8 @@ class Pagination {
 		$twig_vars['page_of_page'] = "Page " . $this->page_number . " of " . $this->total_pages . ".";
 	}
 
-	public function request_url(&$url) {
+	public function request_url(&$url)
+	{
 		// checks for page # in URL
 		$pattern = '/' . $this->config['page_indicator'] . '\//';
 		if (preg_match($pattern, $url)) {
