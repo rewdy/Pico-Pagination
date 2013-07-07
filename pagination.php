@@ -20,13 +20,13 @@ class Pagination {
 			'next_text' => 'Next >',
 			'prev_text' => '< Previous',
 			'page_indicator' => 'page',
-			'output_format'	=> 'links', // can be links or list
+			'output_format'	=> 'links',
 			'filter_date' => true
 		);
 	}
 
 	public function config_loaded(&$settings) {
-		/* Pull config options for site config */
+		// Pull config options for site config
 		if (isset($settings['pagination_limit']))
 			$this->config['limit'] = $settings['pagination_limit'];
 		if (isset($settings['pagination_next_text']))
@@ -43,7 +43,7 @@ class Pagination {
 
 	public function get_pages(&$pages, &$current_page, &$prev_page, &$next_page)
 	{
-		/* Filter the pages returned based on the pagination options */
+		// Filter the pages returned based on the pagination options
 		$this->offset = ($this->page_number-1) * $this->config['limit'];
 		// if filter_date is true, it filters so only dated items are returned.
 		if ($this->config['filter_date']) {
@@ -60,13 +60,13 @@ class Pagination {
 		$this->total_pages = ceil(count($show_pages) / $this->config['limit']);
 		// slice show_pages to the limit
 		$show_pages = array_slice($show_pages, $this->offset, $this->config['limit']);
-		// set pages to show_pages
+		// set set filtered pages to paged_pages
 		$this->paged_pages = $show_pages;
-		//$pages = $show_pages;
 	}
 
-	/* Set a view var to indicate a tag has been requested */
 	public function before_render(&$twig_vars, &$twig) {
+		// Set a bunch of view vars
+
 		global $config;
 
 		// send the paged pages in separate var
@@ -105,8 +105,8 @@ class Pagination {
 		$twig_vars['page_of_page'] = "Page " . $this->page_number . " of " . $this->total_pages . ".";
 	}
 
-	/* When tagged/string is called as a URI, reroute back to index and save the slug */
 	public function request_url(&$url) {
+		// checks for page # in URL
 		$pattern = '/' . $this->config['page_indicator'] . '\//';
 		if (preg_match($pattern, $url)) {
 			$page_numbers = explode('/', $url);
