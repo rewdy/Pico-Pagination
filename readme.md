@@ -1,4 +1,4 @@
-# Pagination Plugin
+# Pico Pagination Plugin
 
 Provides basic pagination for [Pico](http://pico.dev7studios.com).
 
