@@ -5,6 +5,7 @@
  * @author Andrew Meyer
  * @link http://rewdy.com
  * @license http://opensource.org/licenses/MIT
+ * @version 1.0
  */
 class Pagination {
 	
