@@ -53,8 +53,8 @@ For reference, these values are set in config.php using the following format:
 The plugin adds a couple new variables to the theme. They are:
 
 - `{{ pagination_links }}` - The generated next and previous links (output as either two links or an unordered list).
-- `{{ next_page }}` - The next link only. Returns empty string if there isn't one.
-- `{{ prev_page }}` - The previous link only. Returns empty string if there isn't one.
+- `{{ next_page_link }}` - The next link only. Returns empty string if there isn't one.
+- `{{ prev_page_link }}` - The previous link only. Returns empty string if there isn't one.
 - `{{ page_number }}` - The current page number
 - `{{ page_of_page }}` - The page number out of the total number of pages. (i.e. "Page 1 of 3")
 - `{{ paged_pages }}` - The new, paged array of pages for the theme.
