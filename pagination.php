@@ -87,15 +87,15 @@ class Pagination {
 
 		// build pagination links
 		// set next and back link vars to empty. links will be added below if they are available.
-		$twig_vars['next_page'] = $twig_vars['prev_page'] = '';
+		$twig_vars['next_page_link'] = $twig_vars['prev_page_link'] = '';
 		$pagination_parts = array();
 		if ($this->page_number > 1) {
 			$prev_path = $config['base_url'] . '/page/' . ($this->page_number - 1);
-			$pagination_parts['prev_link'] = $twig_vars['prev_page'] = '<a href="' . $prev_path . '" id="prev_page_link">' . $this->config['prev_text'] . '</a>';
+			$pagination_parts['prev_link'] = $twig_vars['prev_page_link'] = '<a href="' . $prev_path . '" id="prev_page_link">' . $this->config['prev_text'] . '</a>';
 		}
 		if ($this->page_number < $this->total_pages) {
 			$next_path = $config['base_url'] . '/page/' . ($this->page_number + 1);
-			$pagination_parts['next_link'] = $twig_vars['next_page'] = '<a href="' . $next_path . '" id="next_page_link">' . $this->config['next_text'] . '</a>';
+			$pagination_parts['next_link'] = $twig_vars['next_page_link'] = '<a href="' . $next_path . '" id="next_page_link">' . $this->config['next_text'] . '</a>';
 		}
 
 		// create pagination links output
