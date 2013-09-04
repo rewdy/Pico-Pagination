@@ -38,8 +38,8 @@ class Pagination {
 			$this->config['prev_text'] = $settings['pagination_prev_text'];
 		if (isset($settings['pagination_filter_date']))
 			$this->config['filter_date'] = $settings['pagination_filter_date'];
-		if (isset($settings['pagination_page_indicator']))
-			$this->config['page_indicator'] = $settings['pagination_page_indicator'];
+		// if (isset($settings['pagination_page_indicator']))
+		// 	$this->config['page_indicator'] = $settings['pagination_page_indicator'];
 		if (isset($settings['pagination_output_format']))
 			$this->config['output_format'] = $settings['pagination_output_format'];
 	}
@@ -90,11 +90,11 @@ class Pagination {
 		$twig_vars['next_page_link'] = $twig_vars['prev_page_link'] = '';
 		$pagination_parts = array();
 		if ($this->page_number > 1) {
-			$prev_path = $config['base_url'] . '/page/' . ($this->page_number - 1);
+			$prev_path = $config['base_url'] . '/' . $this->config['page_indicator'] . '/' . ($this->page_number - 1);
 			$pagination_parts['prev_link'] = $twig_vars['prev_page_link'] = '<a href="' . $prev_path . '" id="prev_page_link">' . $this->config['prev_text'] . '</a>';
 		}
 		if ($this->page_number < $this->total_pages) {
-			$next_path = $config['base_url'] . '/page/' . ($this->page_number + 1);
+			$next_path = $config['base_url'] . '/' . $this->config['page_indicator'] . '/' . ($this->page_number + 1);
 			$pagination_parts['next_link'] = $twig_vars['next_page_link'] = '<a href="' . $next_path . '" id="next_page_link">' . $this->config['next_text'] . '</a>';
 		}
 
