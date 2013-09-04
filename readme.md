@@ -36,9 +36,9 @@ Sets whether the posts returned should be filtered to only those with dates or n
 **Default value: true** | Options: true, false
 
 ~~*pagination_page_indicator*  
-Sets the word used in the URL that will indicate paged results. (i.e. http://yousite.com/**page**/2)  
-**Default value: "page"**~~
-(This option not currently available<sup>1</sup>.)
+Sets the word used in the URL that will indicate paged results. (i.e. http://yousite.com/page/2)  
+**Default value: "page"**~~  
+(This option is not currently available<sup>1</sup>.)
 
 *pagination_output_format*  
 Sets whether `{{ pagination_links }}` will output two `<a>` tags or an unordered list.  
