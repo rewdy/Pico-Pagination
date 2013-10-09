@@ -23,6 +23,7 @@ class Pagination {
 			'prev_text' => '< Previous',
 			'page_indicator' => 'page',
 			'output_format'	=> 'links',
+			'flip_links' => false,
 			'filter_date' => true
 		);
 	}
@@ -36,6 +37,8 @@ class Pagination {
 			$this->config['next_text'] = $settings['pagination_next_text'];
 		if (isset($settings['pagination_prev_text']))
 			$this->config['prev_text'] = $settings['pagination_prev_text'];
+		if (isset($settings['pagination_flip_links']))
+			$this->config['flip_links'] = $settings['pagination_flip_links'];
 		if (isset($settings['pagination_filter_date']))
 			$this->config['filter_date'] = $settings['pagination_filter_date'];
 		// if (isset($settings['pagination_page_indicator']))
@@ -96,6 +99,11 @@ class Pagination {
 		if ($this->page_number < $this->total_pages) {
 			$next_path = $config['base_url'] . '/' . $this->config['page_indicator'] . '/' . ($this->page_number + 1);
 			$pagination_parts['next_link'] = $twig_vars['next_page_link'] = '<a href="' . $next_path . '" id="next_page_link">' . $this->config['next_text'] . '</a>';
+		}
+
+		// reverse order if flip_links is on
+		if ($this->config['flip_links']) {
+			$pagination_parts = array_reverse($pagination_parts);
 		}
 
 		// create pagination links output

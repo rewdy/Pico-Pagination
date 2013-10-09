@@ -2,6 +2,11 @@
 
 Provides basic pagination for [Pico](http://pico.dev7studios.com).
 
+## Changelog
+
+**1.1** - Added ability to reverse the order in which the previous/next links are rendered.  
+**1.0** - Initial release.
+
 ## How it works
 
 It's pretty simple. The plugin creates a second array of pages identical to the default `pages` called `paged_pages`. This second array is filtered by date (so only blog-type posts will be returned) and limited by the number of pages you want per page. Listing your paged results, therefore, is just a matter of iterating through the `paged_pages` variable instead of the `pages` one.
@@ -30,6 +35,10 @@ Sets the text for the next link.
 *pagination_prev_text*  
 Sets the text for the previous links.  
 **Default value: "< previous"**
+
+*pagination_flip_links*  
+Reverses the order the links are ouput. This is to aid in providing links in the format of older/newer as opposed to previous/next.  
+**Default falue: false** | Options: true, false
 
 *pagination_filter_date*  
 Sets whether the posts returned should be filtered to only those with dates or not.  
@@ -101,7 +110,16 @@ If you're familiar with Pico, this may be obvious, but for your main site menu, 
 		{% endfor %}
 	</ul>
 
-There you have it.
+
+### Using Older/Newer links instead of Previous/Next
+
+A lot of blogs (or other chonologically listed content) will want pagination links that use chonological verbiage as opposed to the standard previous/next text. In order to do this, you can set the following config options in Pico's `config.php` file.
+
+	$config['pagination_flip_links'] = true;
+	$config['pagination_next_text'] = '< Older Posts';
+	$config['pagination_prev_text'] = 'Newer Posts >';
+
+Note the first option set. This changes the order in which the links display so that the older link is first and the newer link is second.
 
 ---
 
