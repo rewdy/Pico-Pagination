@@ -4,6 +4,7 @@ Provides basic pagination for [Pico](http://pico.dev7studios.com).
 
 ## Changelog
 
+**1.2** - Added back the ability to set the path segment to indicate pages ("page indicator" ) now that changes have been made in Pico v0.8 that allow it to work properly.
 **1.1** - Added ability to reverse the order in which the previous/next links are rendered.  
 **1.0** - Initial release.
 
@@ -44,10 +45,9 @@ Reverses the order the links are ouput. This is to aid in providing links in the
 Sets whether the posts returned should be filtered to only those with dates or not.  
 **Default value: true** | Options: true, false
 
-~~*pagination_page_indicator*  
+*pagination_page_indicator*  
 Sets the word used in the URL that will indicate paged results. (i.e. http://yousite.com/page/2)  
-**Default value: "page"**~~  
-(This option is not currently available<sup>1</sup>.)
+**Default value: "page"**  
 
 *pagination_output_format*  
 Sets whether `{{ pagination_links }}` will output two `<a>` tags or an unordered list.  
@@ -58,7 +58,6 @@ For reference, these values are set in config.php using the following format:
 	$config['pagination_limit'] = 10;
 	$config['pagination_output_format'] = "list"
 
-<sup>1</sup> _This option is not available because Pico processes the URL before it reads the configuration values. This makes it so that a configuration value cannot be used in the URL. If this gets changed it Pico, it will be made available._
 
 ## Setting up the theme
 

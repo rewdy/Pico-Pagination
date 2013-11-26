@@ -5,7 +5,7 @@
  * @author Andrew Meyer
  * @link http://rewdy.com
  * @license http://opensource.org/licenses/MIT
- * @version 1.0
+ * @version 1.2
  */
 class Pagination {
 	
@@ -41,8 +41,8 @@ class Pagination {
 			$this->config['flip_links'] = $settings['pagination_flip_links'];
 		if (isset($settings['pagination_filter_date']))
 			$this->config['filter_date'] = $settings['pagination_filter_date'];
-		// if (isset($settings['pagination_page_indicator']))
-		// 	$this->config['page_indicator'] = $settings['pagination_page_indicator'];
+		if (isset($settings['pagination_page_indicator']))
+			$this->config['page_indicator'] = $settings['pagination_page_indicator'];
 		if (isset($settings['pagination_output_format']))
 			$this->config['output_format'] = $settings['pagination_output_format'];
 	}
