@@ -123,7 +123,7 @@ class Pagination {
 	public function request_url(&$url)
 	{
 		// checks for page # in URL
-		$pattern = '/' . $this->config['page_indicator'] . '\//';
+		$pattern = '/' . $this->config['page_indicator'] . '\/[0-9]*$/';
 		if (preg_match($pattern, $url)) {
 			$page_numbers = explode('/', $url);
 			$page_number = $page_numbers[count($page_numbers)-1];
