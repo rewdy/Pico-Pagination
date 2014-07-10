@@ -53,6 +53,10 @@ Sets the word used in the URL that will indicate paged results. (i.e. http://you
 Sets whether `{{ pagination_links }}` will output two `<a>` tags or an unordered list.  
 **Default value: "links"** | Options: "links", "list"
 
+*pagination_sub_page*  
+Sets whether there is a sub page for the pagination (i.e. not the root of the site). When this is set to true, you must create a page with the same name as the "pagination_page_indicator" variable, and create a theme template for it to use that includes the pagination.
+**Default value: false** | Options: true, false
+
 For reference, these values are set in config.php using the following format:
 
 	$config['pagination_limit'] = 10;
@@ -119,6 +123,17 @@ A lot of blogs (or other chonologically listed content) will want pagination lin
 	$config['pagination_prev_text'] = 'Newer Posts >';
 
 Note the first option set. This changes the order in which the links display so that the older link is first and the newer link is second.
+
+### Using a sub page as the pagination (e.g. for a blog that is not on the main site index)
+
+Sometimes it is preferable to have your blog listed at /blog rather than on your main page. For example to allow for a landing page to be the first page visitors see.
+
+To do this, set the pagination_sub_page to true, and the pagination_page_indicator variable to "blog":
+
+	$config['pagination_sub_page'] = true;
+	$config['pagination_page_indicator'] = "blog";
+
+Then set up a page called "blog" at the root of your site. Make sure this page uses a different template to the rest of your site, and add the basic implementation of the pagination to this template.
 
 ---
 
