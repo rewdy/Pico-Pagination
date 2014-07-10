@@ -24,7 +24,8 @@ class Pagination {
 			'page_indicator' => 'page',
 			'output_format'	=> 'links',
 			'flip_links' => false,
-			'filter_date' => true
+			'filter_date' => true,
+			'sub_page' => false
 		);
 	}
 
@@ -45,6 +46,8 @@ class Pagination {
 			$this->config['page_indicator'] = $settings['pagination_page_indicator'];
 		if (isset($settings['pagination_output_format']))
 			$this->config['output_format'] = $settings['pagination_output_format'];
+		if (isset($settings['pagination_sub_page']))
+			$this->config['sub_page'] = $settings['pagination_sub_page'];
 	}
 
 	public function get_pages(&$pages, &$current_page, &$prev_page, &$next_page)
@@ -125,7 +128,11 @@ class Pagination {
 			$page_numbers = explode('/', $url);
 			$page_number = $page_numbers[count($page_numbers)-1];
 			$this->page_number = $page_number;
-			$url = '';
+			if ($this->config['sub_page']) {
+				$url = $this->config['page_indicator'];
+			} else {
+				$url = '';
+			}
 		} else {
 			$this->page_number = 1;
 		}
