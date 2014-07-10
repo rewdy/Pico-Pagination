@@ -54,7 +54,7 @@ Sets whether `{{ pagination_links }}` will output two `<a>` tags or an unordered
 **Default value: "links"** | Options: "links", "list"
 
 *pagination_sub_page*  
-Sets whether there is a sub page for the pagination (i.e. not the root of the site). When this is set to true, you must create a page with the same name as the "pagination_page_indicator" variable, and create a theme template for it to use that includes the pagination.
+Sets whether there is a sub page for the pagination (i.e. not the root of the site). When this is set to true, you must create a subfolder in content with the same name as the "pagination_page_indicator" variable. See below for further information.
 **Default value: false** | Options: true, false
 
 For reference, these values are set in config.php using the following format:
@@ -133,7 +133,9 @@ To do this, set the pagination_sub_page to true, and the pagination_page_indicat
 	$config['pagination_sub_page'] = true;
 	$config['pagination_page_indicator'] = "blog";
 
-Then set up a page called "blog" at the root of your site. Make sure this page uses a different template to the rest of your site, and add the basic implementation of the pagination to this template.
+Set up a folder called "blog" in Pico's content folder, and keep all your blog posts in this folder. You will need an index.md in here for the pagination.
+
+Finally set up 2 new templates, one for the index.md that has the above pagination code, the other for the posts (again, using the relevant code from above).
 
 ---
 
