@@ -54,7 +54,7 @@ Sets whether `{{ pagination_links }}` will output two `<a>` tags or an unordered
 **Default value: "links"** | Options: "links", "list"
 
 *pagination_sub_page*  
-Sets whether there is a sub page for the pagination (i.e. not the root of the site). When this is set to true, you must create a subfolder in content with the same name as the "pagination_page_indicator" variable. See below for further information.
+Sets whether there is a sub page for the pagination (i.e. not the root of the site). When this is set to true, you must create a subfolder in content with the same name as the "pagination_page_indicator" variable. See below for further information.  
 **Default value: false** | Options: true, false
 
 For reference, these values are set in config.php using the following format:
