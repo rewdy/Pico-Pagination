@@ -19,8 +19,8 @@ class Pagination {
 	{
 		$this->config = array(
 			'limit' => 5,
-			'next_text' => 'Next >',
-			'prev_text' => '< Previous',
+			'next_text' => 'Next &gt;',
+			'prev_text' => '&lt; Previous',
 			'page_indicator' => 'page',
 			'output_format'	=> 'links',
 			'flip_links' => false,
