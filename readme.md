@@ -4,7 +4,7 @@ Provides basic pagination for [Pico](http://pico.dev7studios.com).
 
 ## Changelog
 
-**1.4** - Changed to use of &gt;/&lt; in default next_text and prev_text variables and added more variables Google search-like numbered pagination.
+**1.4** - Changed to use of `&gt;/&lt;` in default next_text and prev_text variables and added more variables Google search-like numbered pagination.
 **1.3** - Added ablity for pagination to happen in subfolders on a site.  
 **1.2** - Added back the ability to set the path segment to indicate pages ("page indicator" ) now that changes have been made in Pico v0.8 that allow it to work properly.  
 **1.1** - Added ability to reverse the order in which the previous/next links are rendered.  
