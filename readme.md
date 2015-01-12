@@ -72,8 +72,10 @@ The plugin adds a couple new variables to the theme. They are:
 - `{{ next_page_link }}` - The next link only. Returns empty string if there isn't one.
 - `{{ prev_page_link }}` - The previous link only. Returns empty string if there isn't one.
 - `{{ page_number }}` - The current page number
+- `{{ total_pages }}` - The total number of pages.
 - `{{ page_of_page }}` - The page number out of the total number of pages. (i.e. "Page 1 of 3")
 - `{{ paged_pages }}` - The new, paged array of pages for the theme.
+- `{{ page_indicator }}` - The `$config['page_indicator']` variable, usually "page"
 
 To get a basic implemenation of the pagination plugin going, use something like the following:
 	
@@ -101,6 +103,8 @@ To get a basic implemenation of the pagination plugin going, use something like 
 	{% endif %}
 
 **To note:** the key differences here are that the posts loop is iterating through *paged_pages* instead of *pages*. (This sample is taken [from the Pico](http://pico.dev7studios.com/docs.html#blogging) website and modified for the pagination plugin.)
+
+
 
 ### Your Site Navigation
 
@@ -137,6 +141,21 @@ To do this, set the pagination_sub_page to true, and the pagination_page_indicat
 Set up a folder called "blog" in Pico's content folder, and keep all your blog posts in this folder. You will need an index.md in here for the pagination.
 
 Finally set up 2 new templates, one for the index.md that has the above pagination code, the other for the posts (again, using the relevant code from above).
+
+### Using a custom made pagination
+If the `{{ pagination_links }}` twig variable does not fulfill your needs, you can create your own custom pagination. Here is an example that lists all the pages number and adds a CSS class to the current one:
+
+```twig
+<div class="pagination">
+    {% if page_number > 1 %}<a href="{{ base_url }}/{{ page_indicator }}/{{ page_number - 1 }}" class="button previous">Previous Page</a>{% endif %}
+    <div class="pages">
+    {% for page_num in 1..total_pages %}
+        <a href="{{ base_url }}/{{ page_indicator }}/{{ page_num }}"{% if page_num == page_number %} class="active"{% endif %}>{{ page_num }}</a>
+    {% endfor %}
+    </div>
+    {% if page_number < total_pages %} <a href="{{ base_url }}/{{ page_indicator }}/{{ page_number + 1 }}" class="button next">Next Page</a>{% endif %}
+</div>
+```
 
 ---
 

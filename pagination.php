@@ -19,8 +19,8 @@ class Pagination {
 	{
 		$this->config = array(
 			'limit' => 5,
-			'next_text' => 'Next >',
-			'prev_text' => '< Previous',
+			'next_text' => 'Next &gt;',
+			'prev_text' => '&lt; Previous',
 			'page_indicator' => 'page',
 			'output_format'	=> 'links',
 			'flip_links' => false,
@@ -91,6 +91,9 @@ class Pagination {
 		if ($this->total_pages)
 			$twig_vars['total_pages'] = $this->total_pages;
 
+		// set var for page_indicator
+		$twig_vars['page_indicator'] = $this->config['page_indicator'];
+		
 		// build pagination links
 		// set next and back link vars to empty. links will be added below if they are available.
 		$twig_vars['next_page_link'] = $twig_vars['prev_page_link'] = '';
