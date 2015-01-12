@@ -5,7 +5,7 @@
  * @author Andrew Meyer
  * @link http://rewdy.com
  * @license http://opensource.org/licenses/MIT
- * @version 1.2
+ * @version 1.4
  */
 class Pagination {
 	
@@ -25,7 +25,7 @@ class Pagination {
 			'output_format'	=> 'links',
 			'flip_links' => false,
 			'filter_date' => true,
-			'sub_page' => false
+			'sub_page' => false,
 		);
 	}
 
@@ -141,5 +141,3 @@ class Pagination {
 		}
 	}
 }
-
-?>
