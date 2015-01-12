@@ -4,6 +4,7 @@ Provides basic pagination for [Pico](http://pico.dev7studios.com).
 
 ## Changelog
 
+**1.4** - Changed to use of &gt;/&lt; in default next_text and prev_text variables and added more variables Google search-like numbered pagination.
 **1.3** - Added ablity for pagination to happen in subfolders on a site.  
 **1.2** - Added back the ability to set the path segment to indicate pages ("page indicator" ) now that changes have been made in Pico v0.8 that allow it to work properly.  
 **1.1** - Added ability to reverse the order in which the previous/next links are rendered.  
@@ -160,3 +161,5 @@ If the `{{ pagination_links }}` twig variable does not fulfill your needs, you c
 ---
 
 That's it. If you have questions, go ahead and ask. If you have issues, you can add them to the [issue tracker](https://github.com/rewdy/Pico-Pagination/issues).
+
+Thank you to everyone who has helped contribute to this plug in!
