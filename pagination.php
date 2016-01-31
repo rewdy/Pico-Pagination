@@ -134,7 +134,7 @@ class Pagination extends AbstractPicoPlugin {
 			if ($this->config['sub_page']) {
 				$url = $this->config['page_indicator'];
 			} else {
-				$url = '';
+				$url = preg_replace($pattern, '', $url);
 			}
 		} else {
 			$this->page_number = 1;
