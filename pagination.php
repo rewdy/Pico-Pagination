@@ -28,6 +28,8 @@ class Pagination extends AbstractPicoPlugin {
 			'flip_links' => false,
 			'filter_date' => true,
 			'sub_page' => false,
+			'sort_by_date' => false,
+			'reverse' => false,
 		);
 	}
 
@@ -36,20 +38,33 @@ class Pagination extends AbstractPicoPlugin {
 		// Pull config options for site config
 		if (isset($settings['pagination_limit']))
 			$this->config['limit'] = $settings['pagination_limit'];
+		
 		if (isset($settings['pagination_next_text']))
 			$this->config['next_text'] = $settings['pagination_next_text'];
+		
 		if (isset($settings['pagination_prev_text']))
 			$this->config['prev_text'] = $settings['pagination_prev_text'];
+		
 		if (isset($settings['pagination_flip_links']))
 			$this->config['flip_links'] = $settings['pagination_flip_links'];
+		
 		if (isset($settings['pagination_filter_date']))
 			$this->config['filter_date'] = $settings['pagination_filter_date'];
+
+		if (isset($settings['pagination_sort_by_date']))
+			$this->config['sort_by_date'] = $settings['pagination_sort_by_date'];
+		
 		if (isset($settings['pagination_page_indicator']))
 			$this->config['page_indicator'] = $settings['pagination_page_indicator'];
+		
 		if (isset($settings['pagination_output_format']))
 			$this->config['output_format'] = $settings['pagination_output_format'];
+		
 		if (isset($settings['pagination_sub_page']))
 			$this->config['sub_page'] = $settings['pagination_sub_page'];
+
+		if (isset($settings['pagination_reverse']))
+			$this->config['reverse'] = $settings['pagination_reverse'];
 	}
 
 	public function onPagesLoaded(&$pages, &$currentPage, &$previousPage, &$nextPage)
@@ -67,6 +82,23 @@ class Pagination extends AbstractPicoPlugin {
 		} else {
 			$show_pages = $pages;
 		}
+
+		if ($this->config['filter_date'] && $this->config['sort_by_date']) {
+			// sort by date:
+			function date_compare($a, $b)
+			{
+			    $t1 = strtotime($a['date']);
+			    $t2 = strtotime($b['date']);
+			    return $t1 - $t2;
+			}    
+			usort($show_pages, 'date_compare');
+		}
+
+		if($this->config['reverse']){
+			// reverse pages:
+			$show_pages = array_reverse($show_pages);
+		}
+
 		// get total pages before show_pages is sliced
 		$this->total_pages = ceil(count($show_pages) / $this->config['limit']);
 		// slice show_pages to the limit
