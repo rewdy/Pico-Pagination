@@ -77,6 +77,9 @@ class Pagination extends AbstractPicoPlugin {
 
 	public function onPageRendering(&$twig, &$twigVariables, &$templateName)
 	{
+		// Override 404 header
+		header($_SERVER['SERVER_PROTOCOL'].' 200 OK');
+
 		// Set a bunch of view vars
 
 		// send the paged pages in separate var
