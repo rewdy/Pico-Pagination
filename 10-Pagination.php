@@ -77,9 +77,6 @@ class Pagination extends AbstractPicoPlugin {
 
 	public function onPageRendering(&$twig, &$twigVariables, &$templateName)
 	{
-		// Override 404 header
-		header($_SERVER['SERVER_PROTOCOL'].' 200 OK');
-
 		// Set a bunch of view vars
 
 		// send the paged pages in separate var
@@ -117,13 +114,13 @@ class Pagination extends AbstractPicoPlugin {
 
 		// create pagination links output
 		if ($this->config['output_format'] == "list") {
-            $twigVariables['pagination_links'] = '<ul id="pagination"><li>' . implode('</li><li>', array_values($pagination_parts)) . '</li></ul>';
+			$twigVariables['pagination_links'] = '<ul id="pagination"><li>' . implode('</li><li>', array_values($pagination_parts)) . '</li></ul>';
 		} else {
-            $twigVariables['pagination_links'] = implode(' ', array_values($pagination_parts));
+        		$twigVariables['pagination_links'] = implode(' ', array_values($pagination_parts));
 		}
 
 		// set page of page var
-        $twigVariables['page_of_page'] = "Page " . $this->page_number . " of " . $this->total_pages . ".";
+		$twigVariables['page_of_page'] = "Page " . $this->page_number . " of " . $this->total_pages . ".";
 	}
 
 	public function onRequestUrl(&$url)
@@ -131,6 +128,9 @@ class Pagination extends AbstractPicoPlugin {
 		// checks for page # in URL
 		$pattern = '/' . $this->config['page_indicator'] . '\/[0-9]*$/';
 		if (preg_match($pattern, $url)) {
+			// Override 404 header
+			header($_SERVER['SERVER_PROTOCOL'].' 200 OK');
+
 			$page_numbers = explode('/', $url);
 			$page_number = $page_numbers[count($page_numbers)-1];
 			$this->page_number = $page_number;
