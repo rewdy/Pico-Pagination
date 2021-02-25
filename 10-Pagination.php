@@ -99,11 +99,11 @@ class Pagination extends AbstractPicoPlugin {
 		$twigVariables['next_page_link'] = $twigVariables['prev_page_link'] = '';
 		$pagination_parts = array();
 		if ($this->page_number > 1) {
-			$prev_path = $this->getBaseUrl() . '/' . $this->config['page_indicator'] . '/' . ($this->page_number - 1);
+			$prev_path = $this->getBaseUrl() . $this->config['page_indicator'] . '/' . ($this->page_number - 1);
 			$pagination_parts['prev_link'] = $twigVariables['prev_page_link'] = '<a href="' . $prev_path . '" id="prev_page_link">' . $this->config['prev_text'] . '</a>';
 		}
 		if ($this->page_number < $this->total_pages) {
-			$next_path = $this->getBaseUrl() . '/' . $this->config['page_indicator'] . '/' . ($this->page_number + 1);
+			$next_path = $this->getBaseUrl() . $this->config['page_indicator'] . '/' . ($this->page_number + 1);
 			$pagination_parts['next_link'] = $twigVariables['next_page_link'] = '<a href="' . $next_path . '" id="next_page_link">' . $this->config['next_text'] . '</a>';
 		}
 
