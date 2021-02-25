@@ -5,7 +5,7 @@
  * @author Andrew Meyer
  * @link http://rewdy.com
  * @license http://opensource.org/licenses/MIT
- * @version 1.4
+ * @version 1.5
  */
 class Pagination extends AbstractPicoPlugin {
 	
@@ -34,22 +34,11 @@ class Pagination extends AbstractPicoPlugin {
 	public function onConfigLoaded(&$settings)
 	{
 		// Pull config options for site config
-		if (isset($settings['pagination_limit']))
-			$this->config['limit'] = $settings['pagination_limit'];
-		if (isset($settings['pagination_next_text']))
-			$this->config['next_text'] = $settings['pagination_next_text'];
-		if (isset($settings['pagination_prev_text']))
-			$this->config['prev_text'] = $settings['pagination_prev_text'];
-		if (isset($settings['pagination_flip_links']))
-			$this->config['flip_links'] = $settings['pagination_flip_links'];
-		if (isset($settings['pagination_filter_date']))
-			$this->config['filter_date'] = $settings['pagination_filter_date'];
-		if (isset($settings['pagination_page_indicator']))
-			$this->config['page_indicator'] = $settings['pagination_page_indicator'];
-		if (isset($settings['pagination_output_format']))
-			$this->config['output_format'] = $settings['pagination_output_format'];
-		if (isset($settings['pagination_sub_page']))
-			$this->config['sub_page'] = $settings['pagination_sub_page'];
+		foreach ($this->config as $key=>$val) {
+			if (isset($settings["pagination_" . $key])) {
+				$this->config[$key] = $settings["pagination_" . $key];
+			}	
+		}
 	}
 
 	public function onPagesLoaded(&$pages, &$currentPage, &$previousPage, &$nextPage)
@@ -97,17 +86,22 @@ class Pagination extends AbstractPicoPlugin {
 		// build pagination links
 		// set next and back link vars to empty. links will be added below if they are available.
 		$twigVariables['next_page_link'] = $twigVariables['prev_page_link'] = '';
+		$twigVariables['next_page_url'] = $twigVariables['prev_page_url'] = '';
+
+		// Array of markup that will be joined to build the pagination links
 		$pagination_parts = array();
+		// If we have a previous link
 		if ($this->page_number > 1) {
-			$prev_path = $this->getBaseUrl() . $this->config['page_indicator'] . '/' . ($this->page_number - 1);
+			$prev_path = $twigVariables["prev_page_url"] = $this->getBaseUrl() . $this->config['page_indicator'] . '/' . ($this->page_number - 1);
 			$pagination_parts['prev_link'] = $twigVariables['prev_page_link'] = '<a href="' . $prev_path . '" id="prev_page_link">' . $this->config['prev_text'] . '</a>';
 		}
+		// If we have a next link
 		if ($this->page_number < $this->total_pages) {
-			$next_path = $this->getBaseUrl() . $this->config['page_indicator'] . '/' . ($this->page_number + 1);
+			$next_path = $twigVariables["next_page_url"] = $this->getBaseUrl() . $this->config['page_indicator'] . '/' . ($this->page_number + 1);
 			$pagination_parts['next_link'] = $twigVariables['next_page_link'] = '<a href="' . $next_path . '" id="next_page_link">' . $this->config['next_text'] . '</a>';
 		}
 
-		// reverse order if flip_links is on
+		// Reverse order if flip_links is on
 		if ($this->config['flip_links']) {
 			$pagination_parts = array_reverse($pagination_parts);
 		}
@@ -116,7 +110,7 @@ class Pagination extends AbstractPicoPlugin {
 		if ($this->config['output_format'] == "list") {
 			$twigVariables['pagination_links'] = '<ul id="pagination"><li>' . implode('</li><li>', array_values($pagination_parts)) . '</li></ul>';
 		} else {
-        		$twigVariables['pagination_links'] = implode(' ', array_values($pagination_parts));
+			$twigVariables['pagination_links'] = implode(' ', array_values($pagination_parts));
 		}
 
 		// set page of page var
