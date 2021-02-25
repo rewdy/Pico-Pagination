@@ -45,16 +45,27 @@ class Pagination extends AbstractPicoPlugin {
 	{
 		// Filter the pages returned based on the pagination options
 		$this->offset = ($this->page_number-1) * $this->config['limit'];
-		// if filter_date is true, it filters so only dated items are returned.
-		if ($this->config['filter_date']) {
-			$show_pages = array();
-			foreach($pages as $key=>$page) {
-				if ($page['date']) {
-					$show_pages[$key] = $page;
+		$show_pages = $pages;
+		// if sub_page is true, it filters so only items in folder page_indicator are returned.
+		if ($this->config['sub_page']) {
+			$sub_pages = array();
+			$folder = $this->config['page_indicator'];
+			foreach($show_pages as $key=>$page) {
+				if (substr($key, 0, strlen($folder)) === $folder) {
+					$sub_pages[$key] = $page;
 				}
 			}
-		} else {
-			$show_pages = $pages;
+			$show_pages = $sub_pages;
+		}
+		// if filter_date is true, it filters so only dated items are returned.
+		if ($this->config['filter_date']) {
+			$date_pages = array();
+			foreach($show_pages as $key=>$page) {
+				if ($page['date']) {
+					$date_pages[$key] = $page;
+				}
+			}
+			$show_pages = $date_pages;
 		}
 		// get total pages before show_pages is sliced
 		$this->total_pages = ceil(count($show_pages) / $this->config['limit']);
