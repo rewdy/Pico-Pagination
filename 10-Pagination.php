@@ -6,6 +6,8 @@
  * @link http://rewdy.com
  * @license http://opensource.org/licenses/MIT
  * @version 1.5
+ * 
+ * edit by ramingesh (28-Jul-2021): Added lines 63-65 to fix sorting issue
  */
 class Pagination extends AbstractPicoPlugin {
 	
@@ -58,6 +60,9 @@ class Pagination extends AbstractPicoPlugin {
 		}
 		// get total pages before show_pages is sliced
 		$this->total_pages = ceil(count($show_pages) / $this->config['limit']);
+		// ramingesh (26-Jul-2021): The next two lines sort $show_pages by $page['date']:
+		$pdate = array_column($show_pages, 'date');
+		array_multisort($pdate, SORT_DESC, $show_pages);
 		// slice show_pages to the limit
 		$show_pages = array_slice($show_pages, $this->offset, $this->config['limit']);
 		// set filtered pages to paged_pages
