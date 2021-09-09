@@ -4,6 +4,7 @@ Provides basic pagination for [Pico](http://pico.dev7studios.com).
 
 ## Changelog
 
+**1.6** - Fixed a sorting issue when using subfolders.
 **1.5** - Added `next_page_url` and `prev_page_url` variables for Twig. Preparing to stop returning markup from the plugin in a future release—plugin should only return data and leave theming up to site builders.
 **1.4** - Changed to use of `&gt;/&lt;` in default next_text and prev_text variables and added more variables Google search-like numbered pagination.  
 **1.3** - Added ablity for pagination to happen in subfolders on a site.  
