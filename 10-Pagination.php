@@ -5,7 +5,7 @@
  * @author Andrew Meyer
  * @link http://rewdy.com
  * @license http://opensource.org/licenses/MIT
- * @version 1.6
+ * @version 1.7
  */
 class Pagination extends AbstractPicoPlugin {
 	
