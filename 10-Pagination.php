@@ -59,8 +59,8 @@ class Pagination extends AbstractPicoPlugin {
 		// get total pages before show_pages is sliced
 		$this->total_pages = ceil(count($show_pages) / $this->config['limit']);
 		// sort $show_pages by $page['date']:
-		$pdate = array_column($show_pages, 'date');
-		array_multisort($pdate, SORT_DESC, $show_pages);
+		$pdate = array_map('strtotime', array_column($show_pages, 'date'));
+		array_multisort($pdate, SORT_DESC, SORT_NUMERIC, $show_pages);
 		// slice show_pages to the limit
 		$show_pages = array_slice($show_pages, $this->offset, $this->config['limit']);
 		// set filtered pages to paged_pages
