@@ -1,6 +1,6 @@
 # Pico Pagination Plugin
 
-Provides basic pagination for [Pico](http://pico.dev7studios.com).
+Provides basic pagination for [Pico](https://picocms.org/).
 
 ## Changelog
 
