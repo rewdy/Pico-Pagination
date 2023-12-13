@@ -67,7 +67,7 @@ The plugin adds a couple new variables to the theme. They are:
 
 **This variable returns HTML so it must be used in Twig with the `|raw` filter. These will be deprecated at some point in the future as the plugin should only return _data_ instead of _markup_—that's _your_ job in your theme 😉.
 
-To get a basic implemenation of the pagination plugin going, use something like the following:
+To get a basic implementation of the pagination plugin going, use something like the following:
 
 ```twig
 {% if is_front_page %}
@@ -113,7 +113,7 @@ To get a basic implemenation of the pagination plugin going, use something like 
 {% endif %}
 ```
 
-**To note:** the key difference here is that the Pico standard posts loop is iterating through *paged_pages* instead of *pages*. (This sample is taken [from the Pico](http://pico.dev7studios.com/docs.html#blogging) website and modified for the pagination plugin.)
+**To note:** the key difference here is that the Pico standard posts loop is iterating through _paged_pages_ instead of _pages_. (This sample is taken [from the Pico](https://picocms.org/docs/#blogging) website and modified for the pagination plugin.)
 
 ### Your Site Navigation
 
